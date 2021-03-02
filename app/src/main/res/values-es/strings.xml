@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Composing Clocks</string>
+    <string name="action_up">Navegar arriba</string>
+
+    <string name="bottom_nav_config">Conf</string>
+    <string name="bottom_nav_cities">Ciudades</string>
+    <string name="bottom_nav_add">Añadir</string>
+
+    <string name="config_screen_title">Configuración</string>
+    <string name="config_screen_language_title">Idioma de la aplicación</string>
+    <string name="config_screen_clock_select">Selecciona un color</string>
+    <string name="config_screen_clock_ring">Color del bisel</string>
+    <string name="config_screen_hour_hand">Color de la manecilla de las horas</string>
+    <string name="config_screen_minute_hand">Color de la manecilla de los minutos</string>
+    <string name="config_screen_clock_bg">Color del fondo</string>
+
+    <string name="cities_screen_title">Ciudades</string>
+
+    <string name="add_screen_title">Añade tu ciudad</string>
+    <string name="add_screen_city_name">Nombre de la ciudad</string>
+    <string name="add_screen_time_difference">Diferencia horaria</string>
+    <string name="add_screen_clock_type">Tipo de reloj</string>
+    <string name="add_screen_image_title">Imagen de la ciudad</string>
+    <string name="add_screen_image_url">Url</string>
+    <string name="add_screen_next_button">Siguiente</string>
+    <string name="add_screen_save_button">Guardar</string>
+    <string name="add_screen_optional_data_title">Datos opcionales de la ciudad</string>
+    <string name="add_screen_description_hint">Descripción</string>
+    <string name="add_screen_type_title">Elige un tipo de reloj</string>
+    <string name="add_screen_type_minimalist">Minimalista</string>
+    <string name="add_screen_type_complete">Completo</string>
+    <string name="add_screen_type_modern">Moderno</string>
+    <string name="add_screen_type_thick">Grueso</string>
+
+    <string name="barcelona_description">Barcelona es una ciudad española, capital de la comunidad autónoma de Cataluña, de la provincia homónima y de la comarca del Barcelonés.
+Con una población de 1 664 162 habitantes en 2020, es la segunda ciudad más poblada de España y de la península ibérica después de Madrid, y la décima de la Unión Europea. El área metropolitana de Barcelona tiene 3 291 654 (2019), y el ámbito metropolitano de Barcelona, cuenta con 4 895 876 habitantes (2019), siendo así la quinta ciudad de mayor población de la Unión Europea.
+La ciudad cuenta con un PIB nominal de 142 223 millones USD y un PIB per cápita nominal de 30 619 USD, lo que representa un PIB PPA per cápita de 36 240 USD, siendo la segunda área metropolitana española en actividad económica; y la décimoseptima de Europa por detrás de: Londres, París, Rin-Ruhr, Ámsterdam, Milán, Bruselas, Moscú, Fráncfort del Meno, Múnich, Madrid, Berlín, Viena, Roma, Copenhague, Estocolmo, Birmingham.
+Se ubica a la orilla del mar Mediterráneo, a unos 120 km al sur de la cadena montañosa de los Pirineos y de la frontera con Francia, en un pequeño llano litoral limitado por el mar al este, la sierra de Collserola al oeste, el río Llobregat al sur y el río Besós al norte. Por haber sido capital del condado de Barcelona, se suele aludir a ella con la denominación antonomástica de Ciudad Condal. </string>
+    <!--<string name="paris_description">París es la capital de Francia y su ciudad más poblada. Capital de la región de Isla de Francia (o "Región Parisina"), constituye el único departamento unicomunal del país.
+La ciudad de París, dentro de sus estrechos límites administrativos, tiene una población de 2 273 305 habitantes en 2015. Sin embargo, en el siglo XX, el área metropolitana de París se expandió más allá de los límites del municipio de París, y es hoy en día, con una población de 12 405 426 habitantes en 2013, la segunda área metropolitana del continente europeo (después de Londres) y la 28ª del mundo.</string>
+    <string name="tokyo_description">Tokio oficialmente Metrópolis de Tokio es la capital de facto de Japón, localizada en el centro este de la isla de Honshu, concretamente en la región de Kantō. En conjunto forma una de las 47 prefecturas de Japón. Es el centro de la política, economía, educación, comunicación y cultura del país. Cuenta también con la mayor concentración de sedes corporativas, instituciones financieras, universidades y colegios, museos, teatros, establecimientos comerciales y de entretenimiento de todo Japón.
+Con una población que supera los 40 millones de habitantes, se subdivide en 23 barrios (区 -ku); 26 ciudades (市 -shi); un distrito (郡 -gun) subdividido en tres pueblos (町 -chō o -machi) y una villa (村 -son o -mura); y cuatro subprefecturas (支庁 -shichō) subdivididas en dos pueblos y siete villas, que representan a varias pequeñas islas al sur de Honshu que se extienden más allá de 1800 km de Shinjuku, capital de la metrópoli y sede de la gobernación. El centro de Tokio, con sus 23 barrios, ocupa un tercio de la metrópoli, con una población cercana a los 13,23 millones de habitantes; esta área es lo que se conoce internacionalmente como la ciudad de Tokio. En su área metropolitana viven más de 40 millones de habitantes, lo que la convierte en la segunda mayor aglomeración urbana del mundo detrás de la de Guangzhou, en China. En 2015 fue elegida como la ciudad más segura del mundo por el periódico The Economist. </string>
+    <string name="seattle_description">Seattle es la ciudad más grande del estado de Washington, en el noroeste de los Estados Unidos de América. El área metropolitana de la ciudad comprende Seattle-Tacoma-Bellevue, es la 15.ª más poblada del país y la mayor del Noroeste del Pacífico. La ciudad está situada entre el lago Washington y la bahía conocida como Puget Sound, junto al océano Pacífico. Se encuentra a 155 kilómetros al sur de la frontera entre Estados Unidos y Canadá. Importante centro cultural, educativo y económico de la región, Seattle es sede del condado de King. En el censo estimado de 2018, la ciudad contaba con una población municipal de 744 955 habitantes, por lo que es la vigésimo cuarta ciudad más poblada de los Estados Unidos, y con un área metropolitana de 3 263 497 habitantes.</string>
+    <string name="sydney_description">Sídney es la ciudad más grande y poblada de Australia y Oceanía, con una población en su área metropolitana cercana a los 4,92 millones, según una estimación de 2015. Es la capital del estado de Nueva Gales del Sur y fue el asentamiento de la primera colonia británica en Australia. Fue fundada en 1788 en la cala de Sídney por Arthur Phillip, almirante de la Primera Flota de Gran Bretaña, y es la ciudad más antigua del país.
+Está situada al sureste de Australia, a orillas de la amplia bahía de Sídney (Puerto Jackson). En la ciudad destaca la Casa de la Ópera, el puente de la bahía de Sídney, o Harbour Bridge, y sus playas. El área metropolitana está rodeada de parques nacionales que contienen bahías y ríos. La ciudad ha acogido eventos internacionales deportivos como los Juegos de la Mancomunidad de 1938, los Juegos Olímpicos de Sídney 2000 y la final de la Copa Mundial de Rugby de 2003, entre otros. Sídney es catalogada como una de las 15 ciudades más visitadas del mundo, con millones de turistas viniendo cada año a ver atracciones como el jardín botánico, el puerto de la ciudad, el parque nacional Real, la Casa de la Ópera, etc. </string>-->
+</resources>

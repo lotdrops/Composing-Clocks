@@ -1,0 +1,3 @@
+<resources>
+    <style name="Theme.ComposingClocks" parent="android:Theme.Material" />
+</resources>

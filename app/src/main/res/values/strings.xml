@@ -1,0 +1,43 @@
+<resources>
+    <string name="app_name">Composing Clocks</string>
+    <string name="action_up">Navigate up</string>
+
+
+    <string name="bottom_nav_config">Config</string>
+    <string name="bottom_nav_cities">Cities</string>
+    <string name="bottom_nav_add">Add</string>
+
+    <string name="config_screen_title">Configuration</string>
+    <string name="config_screen_language_title">App language</string>
+    <string name="config_screen_clock_select">Select a color</string>
+    <string name="config_screen_clock_ring">Clock ring color</string>
+    <string name="config_screen_hour_hand">Hour hand color</string>
+    <string name="config_screen_minute_hand">Minute hand color</string>
+    <string name="config_screen_clock_bg">Clock background color</string>
+
+    <string name="cities_screen_title">Cities</string>
+
+    <string name="add_screen_title">Add your city</string>
+    <string name="add_screen_city_name">City name</string>
+    <string name="add_screen_time_difference">Time difference</string>
+    <string name="add_screen_clock_type">Clock type</string>
+    <string name="add_screen_image_title">City image</string>
+    <string name="add_screen_image_url">Url</string>
+    <string name="add_screen_next_button">Next</string>
+    <string name="add_screen_save_button">Save</string>
+    <string name="add_screen_optional_data_title">City optional data</string>
+    <string name="add_screen_description_hint">Description</string>
+    <string name="add_screen_type_title">Select clock type</string>
+    <string name="add_screen_type_minimalist">Minimalist</string>
+    <string name="add_screen_type_complete">Complete</string>
+    <string name="add_screen_type_modern">Modern</string>
+    <string name="add_screen_type_thick">Thick</string>
+
+
+    <string name="barcelona_description">Barcelona is a city on the coast of northeastern Spain. It is the capital and largest city of the autonomous community of Catalonia, as well as the second most populous municipality of Spain. With a population of 1.6 million within city limits, its urban area extends to numerous neighbouring municipalities within the Province of Barcelona and is home to around 4.8 million people,[3] making it the fifth most populous urban area in the European Union after Paris, the Ruhr area, Madrid, and Milan.[3] It is one of the largest metropolises on the Mediterranean Sea, located on the coast between the mouths of the rivers Llobregat and Besòs, and bounded to the west by the Serra de Collserola mountain range, the tallest peak of which is 512 metres (1,680 feet) high. </string>
+    <!--<string name="paris_description">Paris is the capital and most populous city of France, with an estimated population of 2,148,271 residents as of 2020, in an area of more than 105 square kilometres (41 square miles). Since the 17th century, Paris has been one of Europe\'s major centres of finance, diplomacy, commerce, fashion, science and arts. The City of Paris is the centre and seat of government of the Île-de-France, or Paris Region, which has an estimated official 2020 population of 12,278,210, or about 18 percent of the population of France. The Paris Region had a GDP of €709 billion ($808 billion) in 2017. According to the Economist Intelligence Unit Worldwide Cost of Living Survey in 2018, Paris was the second most expensive city in the world, after Singapore, and ahead of Zürich, Hong Kong, Oslo and Geneva. Another source ranked Paris as most expensive, on a par with Singapore and Hong Kong, in 2018.</string>
+    <string name="tokyo_description">Tokyo officially Tokyo Metropolis (東京都, Tōkyō-to), is the capital and most populous prefecture of Japan. Located at the head of Tokyo Bay, the prefecture forms part of the Kantō region on the central Pacific coast of Japan’s main island of Honshu. Tokyo is the political and economic center of the country, as well as the seat of the Emperor of Japan and the national government. In 2019, the prefecture had an estimated population of 13,929,280. The Greater Tokyo Area is the most populous metropolitan area in the world, with more than 37.393 million residents as of 2020.</string>
+    <string name="seattle_description">Seattle is a seaport city on the West Coast of the United States. It is the seat of King County, Washington. Seattle is the largest city in both the state of Washington and the Pacific Northwest region of North America. According to U.S. Census data released in 2019, the Seattle metropolitan area\'s population stands at 3.98 million, making it the 15th-largest in the United States. In July 2013, Seattle was the fastest-growing major city in the United States and remained in the top five in May 2015 with an annual growth rate of 2.1%. In July 2016, Seattle ranked as the fastest-growing major U.S. city, with a 3.1% annual growth rate.
+Seattle is situated on an isthmus between Puget Sound (an inlet of the Pacific Ocean) and Lake Washington. It is the northernmost large city in the United States, located about 100 miles (160 km) south of the Canadian border. A major gateway for trade with Asia, Seattle is the fourth-largest port in North America in terms of container handling as of 2015.</string>
+    <string name="sydney_description">Sydney is the capital city of the state of New South Wales, and the most populous city in Australia and Oceania. Located on Australia\'s east coast, the metropolis surrounds Port Jackson and extends about 70 km (43.5 mi) on its periphery towards the Blue Mountains to the west, Hawkesbury to the north, the Royal National Park to the south and Macarthur to the south-west. Sydney is made up of 658 suburbs, spread across 33 local government areas. Informally there are at least 15 regions. Residents of the city are known as "Sydneysiders". As of June 2019, Sydney's estimated metropolitan population was 5,312,163, meaning the city is home to approximately 65% of the state's population.</string>-->
+</resources>

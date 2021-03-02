@@ -1,7 +1,7 @@
 # Composing clocks sample app
 
 This is a sample app to show how to build an app that follows the practices described in the series of articles *Compose (UI) beyond the UI*.  
-These practices, in short, propose manually handling configuration changes and avoiding AAC ViewModels in apps that are fully in compose. To understand why, please read the articles ([Part I](https://proandroiddev.com/compose-ui-beyond-the-ui-part-i-big-changes-bfe824ee8ed4), [Part II](https://proandroiddev.com/compose-ui-beyond-the-ui-part-ii-applying-changes-b67b42ea7142), Part III).  
+These practices, in short, propose manually handling configuration changes and avoiding AAC ViewModels in apps that are fully in compose. To understand why, please read the articles ([Part I](https://proandroiddev.com/compose-ui-beyond-the-ui-part-i-big-changes-bfe824ee8ed4), [Part II](https://proandroiddev.com/compose-ui-beyond-the-ui-part-ii-applying-changes-b67b42ea7142), [Part III](https://jsaumell.medium.com/compose-ui-beyond-the-ui-part-iii-no-aac-viewmodel-and-a-sample-app-8e76dbdd1529)).  
 This app uses mock data to save time on API requests, and to avoid needing credentials.  
 
 ## Project characteristics  

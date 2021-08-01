@@ -22,10 +22,9 @@ import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
-import androidx.navigation.compose.navigate
 import com.pose.composingclocks.R
 import com.pose.composingclocks.common.AppViewModel
-import com.pose.composingclocks.core.koincompat.get
+//import com.pose.composingclocks.core.koincompat.get
 import com.pose.composingclocks.core.scopednav.navigation.NoParams
 import com.pose.composingclocks.core.scopednav.navigation.doubleScopedComposable
 import com.pose.composingclocks.core.scopednav.navigation.getParentOrThis
@@ -44,6 +43,7 @@ import com.pose.composingclocks.feature.cities.CityDetailScreen
 import com.pose.composingclocks.feature.cities.CityDetailValues
 import com.pose.composingclocks.feature.config.ConfigScreen
 import com.pose.composingclocks.feature.config.ConfigViewModel
+import org.koin.androidx.compose.get
 import org.koin.core.parameter.parametersOf
 import org.koin.core.scope.Scope
 
@@ -139,7 +139,7 @@ fun BottomBar(navController: NavHostController) {
                 onClick = {
                     appVm.bottomBarSelection.value = route
                     navController.navigate(route) {
-                        popUpTo = navController.graph.startDestination
+                        popUpTo(navController.graph.startDestinationId)
                         launchSingleTop = true
                     }
                 }
@@ -154,13 +154,13 @@ private fun navToTopDestination(
     appViewModel: AppViewModel,
 ) {
     navController.navigate(path) {
-        popUpTo(navController.graph.startDestination) {}
+        popUpTo(navController.graph.startDestinationId) {}
     }
     appViewModel.onBottomDestinationChanged(path)
 }
 
 private fun updateStateIfStartDestination(destination: NavDestination?, vm: AppViewModel) {
-    if (destination?.id != null && destination.id == destination.getRootGraph()?.startDestination) {
+    if (destination?.id != null && destination.id == destination.getRootGraph()?.startDestinationId) {
         vm.onBottomDestinationChanged(startDestinationPath)
     }
 }

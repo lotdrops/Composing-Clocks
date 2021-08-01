@@ -1,5 +1,6 @@
 package com.pose.composingclocks.feature.cities
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,6 +21,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.ImagePainter
+import coil.compose.rememberImagePainter
 import com.pose.composingclocks.R
 import com.pose.composingclocks.app.LocalClockTheme
 import com.pose.composingclocks.common.cities.mockData
@@ -28,7 +31,7 @@ import com.pose.composingclocks.common.widgets.NoPhoto
 import com.pose.composingclocks.common.widgets.ScreenTitle
 import com.pose.composingclocks.core.scopednav.navigation.NoParams
 import com.pose.composingclocks.core.scopednav.navigation.ScreenDestination
-import dev.chrisbanes.accompanist.coil.CoilImage
+import com.pose.composingclocks.feature.add.widgets.NoPhotoView
 
 object CitiesScreen : ScreenDestination<NoParams>(pathRoot = "citiesScreen")
 
@@ -70,14 +73,17 @@ private fun CityRow(city: CityUiModel, onCityClick: (CityUiModel) -> Unit) {
             description = city.name,
             modifier = Modifier.clickable(onClick = { onCityClick(city) })
         )
-        CoilImage(
-            data = city.image,
-            contentDescription = city.name,
-            modifier = Modifier
-                .clickable(onClick = { onCityClick(city) }),
-            contentScale = ContentScale.Crop,
-            error = { NoPhoto() },
-        )
+        val painter = rememberImagePainter(city.image)
+        Box {
+            Image(
+                painter = painter,
+                contentDescription = city.name,
+                modifier = Modifier
+                    .clickable(onClick = { onCityClick(city) }),
+                contentScale = ContentScale.Crop,
+            )
+            if (painter.state is ImagePainter.State.Error) { NoPhoto() }
+        }
 
         TitleWithGradient(text = city.name, modifier = Modifier.align(Alignment.BottomStart))
 

@@ -87,17 +87,17 @@ private fun List<NavArgument<*>>.toNamedNavArgs() = map { navArg ->
     }
 }
 
-private fun List<String>.buildRoute(root: String) = fold(root) { accumulatedPath, argument ->
-    "$accumulatedPath/$argument"
+private fun List<String>.buildRoute(root: String): String = fold(root) { accPath, argument ->
+    "$accPath/$argument"
 }
-private fun List<NavArgument<*>>.asRoute(root: String) = fold(root) { accumulatedPath, argument ->
-    accumulatedPath + argument.asRoute()
+private fun List<NavArgument<*>>.asRoute(root: String): String = fold(root) { accPath, argument ->
+    accPath + argument.asRoute()
 }
 
-private fun NavArgument<*>.asRoute() =
+private fun NavArgument<*>.asRoute(): String =
     if (this is NavArgument.Optional) "/?$key={$key}" else "/{$key}"
 
-private fun List<NavArgument<*>>.asPathWithArgs(args: Bundle?) =
+private fun List<NavArgument<*>>.asPathWithArgs(args: Bundle?): String =
     fold("") { accumulatedPath, argument ->
         accumulatedPath + argument.asRoute() + ":" + args?.let { argument.getValue(it) }
     }

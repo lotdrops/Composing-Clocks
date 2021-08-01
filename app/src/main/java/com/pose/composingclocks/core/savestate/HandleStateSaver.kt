@@ -24,7 +24,7 @@ class HandleStateSaver(private val savedStateHandle: SavedStateHandle) : StateSa
         return flow
     }
 
-    override fun <T> setValue(key: String, value: T) = savedStateHandle.set(key, value)
+    override fun <T> setValue(key: String, value: T): Unit = savedStateHandle.set(key, value)
 
     override fun <T> getValue(key: String): T? = savedStateHandle.get<T>(key)
 

@@ -1,6 +1,8 @@
 package com.pose.composingclocks.feature.cities
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,9 +16,10 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
+import coil.compose.ImagePainter
+import coil.compose.rememberImagePainter
 import com.pose.composingclocks.app.theme.typography
 import com.pose.composingclocks.common.widgets.NoPhoto
-import dev.chrisbanes.accompanist.coil.CoilImage
 
 @Composable
 fun TitleWithGradient(text: String, modifier: Modifier = Modifier) {
@@ -39,11 +42,14 @@ fun TitleWithGradient(text: String, modifier: Modifier = Modifier) {
 
 @Composable
 fun CityImage(url: String, description: String, modifier: Modifier = Modifier) {
-    CoilImage(
-        data = url,
-        contentDescription = description,
-        modifier = modifier.fillMaxSize(),
-        contentScale = ContentScale.Crop,
-        error = { NoPhoto() },
-    )
+    val painter = rememberImagePainter(url)
+    Box {
+        Image(
+            painter = painter,
+            contentDescription = description,
+            modifier = modifier.fillMaxSize(),
+            contentScale = ContentScale.Crop,
+        )
+        if (painter.state is ImagePainter.State.Error) { NoPhoto() }
+    }
 }

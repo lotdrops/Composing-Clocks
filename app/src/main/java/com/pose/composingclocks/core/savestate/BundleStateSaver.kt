@@ -29,7 +29,7 @@ class BundleStateSaver(val bundle: Bundle) : StateSaver {
         return flow
     }
 
-    override fun <T> setValue(key: String, value: T) = when (value) {
+    override fun <T> setValue(key: String, value: T): Unit = when (value) {
         is Int -> bundle.putInt(key, value)
         is String -> bundle.putString(key, value)
         is Long -> bundle.putLong(key, value)

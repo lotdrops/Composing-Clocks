@@ -41,8 +41,9 @@ fun ScopeDSL.attachScopedCoroutine() {
     scoped(named(Di.ScopedCoroutine)) { coroutineScope }
 }
 
-fun Scope.getScopedCoroutineScopeOrNull() = getOrNull<CoroutineScope>(named(Di.ScopedCoroutine))
-fun Scope.getScopedCoroutineScope() = get<CoroutineScope>(named(Di.ScopedCoroutine))
+fun Scope.getScopedCoroutineScopeOrNull(): CoroutineScope? =
+    getOrNull<CoroutineScope>(named(Di.ScopedCoroutine))
+fun Scope.getScopedCoroutineScope(): CoroutineScope = get<CoroutineScope>(named(Di.ScopedCoroutine))
 
 private class ClearableCoroutineScope(private val coroutineScope: CoroutineScope) : Clearable {
     override fun clear() {

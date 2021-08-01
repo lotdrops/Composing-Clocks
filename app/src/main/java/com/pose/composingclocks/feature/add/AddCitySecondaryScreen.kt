@@ -1,6 +1,8 @@
 package com.pose.composingclocks.feature.add
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,18 +14,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import coil.compose.ImagePainter
+import coil.compose.rememberImagePainter
 import com.pose.composingclocks.R
 import com.pose.composingclocks.common.widgets.ScreenTitleWithBack
 import com.pose.composingclocks.common.widgets.SectionTitle
 import com.pose.composingclocks.core.scopednav.navigation.NoParams
 import com.pose.composingclocks.core.scopednav.navigation.ScreenDestination
 import com.pose.composingclocks.feature.add.widgets.NoPhotoView
-import dev.chrisbanes.accompanist.coil.CoilImage
 
 object AddCitySecondaryScreen : ScreenDestination<NoParams>(pathRoot = "addCitySecondaryScreen")
 
@@ -62,7 +64,10 @@ private fun AddCityOptionalContent(
             onBack = onBack,
         )
 
-        Column(Modifier.fillMaxSize().padding(horizontal = 16.dp)) {
+        Column(
+            Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp)) {
             TextField(
                 value = description,
                 onValueChange = onDescriptionChange,
@@ -114,14 +119,16 @@ fun PhotoSelectedView(url: String, modifier: Modifier) {
     if (url.trim().isEmpty()) {
         NoPhotoView(modifier.padding(vertical = 8.dp))
     } else {
-        CoilImage(
-            data = url,
-            contentDescription = null,
-            modifier = modifier.fillMaxSize(),
-            contentScale = ContentScale.Crop,
-            error = { NoPhotoView(modifier, loading = false, isError = true) },
-            loading = { NoPhotoView(modifier, true) },
-        )
+        val painter = rememberImagePainter(url)
+        Box {
+            Image(painter = painter, contentDescription = null,)
+            when (painter.state) {
+                is ImagePainter.State.Loading -> { NoPhotoView(modifier, true) }
+                is ImagePainter.State.Error -> {
+                    NoPhotoView(modifier, loading = false, isError = true)
+                }
+            }
+        }
     }
 }
 

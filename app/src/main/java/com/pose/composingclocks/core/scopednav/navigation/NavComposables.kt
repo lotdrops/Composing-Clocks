@@ -6,10 +6,10 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.navigation
-import com.pose.composingclocks.core.koincompat.getKoin
+import androidx.navigation.navigation
 import com.pose.composingclocks.core.scopednav.ClearablesScopeCallback
 import com.pose.composingclocks.core.scopednav.ScopeLifecycleHandler
+import org.koin.androidx.compose.getKoin
 import org.koin.core.scope.Scope
 
 /**
@@ -83,12 +83,12 @@ NavGraphBuilder.doubleScopedComposable(
     }
 }
 
-fun NavBackStackEntry.getParentEntry(navController: NavController) =
+fun NavBackStackEntry.getParentEntry(navController: NavController): NavBackStackEntry? =
     destination.parent?.id?.let { parentId ->
         navController.getBackStackEntry(parentId)
     }
 
-fun NavBackStackEntry.getParentOrThis(navController: NavController) =
+fun NavBackStackEntry.getParentOrThis(navController: NavController): NavBackStackEntry =
     getParentEntry(navController) ?: this
 
 /**

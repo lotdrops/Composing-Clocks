@@ -1,15 +1,19 @@
 package com.pose.composingclocks.core.scopednav.navigation
 
 import android.os.Bundle
+import androidx.navigation.NamedNavArgument
 import androidx.navigation.NavType
-import androidx.navigation.compose.NamedNavArgument
-import androidx.navigation.compose.navArgument
+import androidx.navigation.navArgument
+import com.pose.composingclocks.app.NavTransition
 
 interface NavDestination <T : NavParams> {
+    val pathRoot: String
     val declaredPath: String
-    val namedNavArgs: List<NamedNavArgument> get() = emptyList()
-    fun buildPath(args: Bundle?): String = declaredPath
-    fun buildRoute(params: T): String = declaredPath
+    val namedNavArgs: List<NamedNavArgument> get() = listOf(NavArgTransition).toNamedNavArgs()
+    fun buildPath(args: Bundle?): String =
+        buildPathWithArgs(pathRoot, listOf(NavArgTransition), args)
+    fun buildRoute(params: T, transition: NavTransition = NavTransition.Default): String =
+        "$pathRoot${transition.toRoute()}"
 }
 
 interface NestedNavGraph <T : NavParams, R : NavParams> : NavDestination<T> {
@@ -17,26 +21,34 @@ interface NestedNavGraph <T : NavParams, R : NavParams> : NavDestination<T> {
 }
 
 open class ScreenDestination<T : NavParams>(
-    pathRoot: String,
+    override val pathRoot: String,
 ) : NavDestination<T> {
-    override val declaredPath: String = pathRoot
+    override val declaredPath: String = listOf(NavArgTransition).asRoute(pathRoot)
 }
 
 open class ScreenDestinationWithArgs<T : NavParams>(
-    private val pathRoot: String,
+    override val pathRoot: String,
     private val arguments: List<NavArgument<*>> = emptyList(),
 ) : NavDestination<T> {
-    override val declaredPath: String = arguments.asRoute(pathRoot)
-    override val namedNavArgs = arguments.toNamedNavArgs()
-    override fun buildPath(args: Bundle?): String = "$pathRoot${arguments.asPathWithArgs(args)}"
-    override fun buildRoute(params: T): String = params.list.buildRoute(pathRoot)
+    private val allArguments = arguments + NavArgTransition
+    override val declaredPath: String = allArguments.asRoute(pathRoot)
+    override val namedNavArgs = allArguments.toNamedNavArgs()
+    override fun buildPath(args: Bundle?): String = buildPathWithArgs(pathRoot, allArguments, args)
+    override fun buildRoute(params: T, transition: NavTransition): String =
+        (params.list + transition.toString()).buildRoute(pathRoot)
 }
 
-open class SubgraphDestination<T : NavParams, R : NavParams>(
+private fun buildPathWithArgs(
     pathRoot: String,
+    arguments: List<NavArgument<*>>,
+    bundle: Bundle?,
+) = "$pathRoot${arguments.asPathWithArgs(bundle)}"
+
+open class SubgraphDestination<T : NavParams, R : NavParams>(
+    override val pathRoot: String,
     override val startDestination: NavDestination<R>,
 ) : NavDestination<T>, NestedNavGraph<T, R> {
-    override val declaredPath: String = pathRoot
+    override val declaredPath: String = listOf(NavArgTransition).asRoute(pathRoot)
 }
 
 open class SubgraphDestinationWithArgs<T : NavParams, R : NavParams>(
@@ -61,7 +73,7 @@ sealed class OptionalParam<out T> {
 sealed class NavArgument<T> {
     abstract val key: String
     abstract val type: NavType<T>
-    fun getValue(args: Bundle?): T? = args?.let { type.get(it, key) }
+    fun getValue(args: Bundle?): T? = args?.let { type[it, key] }
 
     data class Required<T>(
         override val key: String,
@@ -79,6 +91,13 @@ sealed class NavArgument<T> {
         }
     }
 }
+
+private object NavArgTransition : NavArgument<NavTransition>() {
+    override val key: String = NavTransition.ARG_KEY
+    override val type: NavType<NavTransition> = NavType.EnumType(NavTransition::class.java)
+}
+
+private fun NavTransition?.toRoute(): String = if (this == null) "" else "/$this"
 
 private fun List<NavArgument<*>>.toNamedNavArgs() = map { navArg ->
     navArgument(navArg.key) {

@@ -5,7 +5,8 @@ These practices, in short, propose manually handling configuration changes and a
 This app uses mock data to save time on API requests, and to avoid needing credentials.  
 
 ## Project characteristics  
-* **Compose UI** for everything (beta01)  
+* **Compose UI** for everything  
+* Compose material transitions with custom theme  
 * MVVM architecture  
 * **No usage of AppCompatActivity, Fragment or AAC ViewModel**  
 * **Config changes are manually handled**: language or orientation changes do not recreate the activity  

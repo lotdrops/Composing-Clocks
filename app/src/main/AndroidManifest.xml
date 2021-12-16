@@ -15,6 +15,7 @@
         android:theme="@style/Theme.ComposingClocks">
         <activity
             android:name=".app.MainActivity"
+            android:exported="true"
             android:label="@string/app_name"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden|locale|layoutDirection"
             android:theme="@style/Theme.ComposingClocks">

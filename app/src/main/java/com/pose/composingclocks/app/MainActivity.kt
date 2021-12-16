@@ -21,7 +21,7 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
-import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.pose.composingclocks.app.theme.ComposingClocksTheme
 import com.pose.composingclocks.common.AppViewModel
 import com.pose.composingclocks.common.cities.CitiesListMockUseCase
@@ -37,7 +37,7 @@ private const val StateSaverKey = "GlobalStateSaverKey"
 
 class MainActivity : ComponentActivity() {
 
-    @ExperimentalAnimationApi
+    @OptIn(ExperimentalAnimationApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -113,7 +113,7 @@ private fun LanguageOverride(
 @Composable
 fun AppLayout(language: String) {
     SetLanguage(language = language)
-    val navController = rememberNavController()
+    val navController = rememberAnimatedNavController()
     Scaffold(bottomBar = { BottomBar(navController) }) { innerPadding ->
         Box(modifier = Modifier.padding(innerPadding)) {
             RootNavigation(navController)

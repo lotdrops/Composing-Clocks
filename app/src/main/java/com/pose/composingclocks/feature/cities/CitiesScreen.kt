@@ -31,7 +31,6 @@ import com.pose.composingclocks.common.widgets.NoPhoto
 import com.pose.composingclocks.common.widgets.ScreenTitle
 import com.pose.composingclocks.core.scopednav.navigation.NoParams
 import com.pose.composingclocks.core.scopednav.navigation.ScreenDestination
-import com.pose.composingclocks.feature.add.widgets.NoPhotoView
 
 object CitiesScreen : ScreenDestination<NoParams>(pathRoot = "citiesScreen")
 

@@ -1,6 +1,7 @@
 package com.pose.composingclocks.feature.cities
 
 import android.os.Bundle
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -12,6 +13,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.LocalContentColor
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -55,7 +57,7 @@ fun CityDetailScreen(viewModel: CityDetailViewModel) {
 
 @Composable
 private fun CityDetail(city: CityUiModel, timezone: String, onBack: () -> Unit) {
-    Column {
+    Column(Modifier.background(MaterialTheme.colors.background)) {
         Header(city.name, city.image, onBack)
         Column(Modifier.verticalScroll(rememberScrollState(0))) {
             ClockSection(city, timezone)

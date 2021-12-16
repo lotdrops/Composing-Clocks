@@ -67,7 +67,8 @@ private fun AddCityOptionalContent(
         Column(
             Modifier
                 .fillMaxSize()
-                .padding(horizontal = 16.dp)) {
+                .padding(horizontal = 16.dp)
+        ) {
             TextField(
                 value = description,
                 onValueChange = onDescriptionChange,

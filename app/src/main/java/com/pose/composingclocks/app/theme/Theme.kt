@@ -26,10 +26,12 @@ fun ComposingClocksTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @C
         LightColorPalette
     }
 
-    MaterialTheme(
-        colors = colors,
-        typography = typography,
-        shapes = shapes,
-        content = content
-    )
+    MotionTheme {
+        MaterialTheme(
+            colors = colors,
+            typography = typography,
+            shapes = shapes,
+            content = content
+        )
+    }
 }

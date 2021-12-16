@@ -14,17 +14,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavGraph
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.pose.composingclocks.R
+import com.pose.composingclocks.app.theme.LocalMotionTransition
 import com.pose.composingclocks.common.AppViewModel
-//import com.pose.composingclocks.core.koincompat.get
 import com.pose.composingclocks.core.scopednav.navigation.NoParams
 import com.pose.composingclocks.core.scopednav.navigation.doubleScopedComposable
 import com.pose.composingclocks.core.scopednav.navigation.getParentOrThis
@@ -53,22 +56,48 @@ private val startDestinationPath = BottomNavItem.Config.pathRoot
 @Composable
 fun RootNavigation(navController: NavHostController) {
     val appVm: AppViewModel = get()
+    val screenWidth = with(LocalDensity.current) {
+        LocalConfiguration.current.screenWidthDp.dp.toPx()
+    }.toInt()
 
-    NavHost(navController = navController, startDestination = startDestinationPath) {
+    val motionTransition = LocalMotionTransition.current
+
+    AnimatedNavHost(
+        navController = navController,
+        startDestination = startDestinationPath,
+        enterTransition = {
+            getEnterTransition(motionTransition)
+        },
+        exitTransition = {
+            getExitTransition(motionTransition)
+        },
+        popEnterTransition = {
+            getPopEnterTransition(motionTransition)
+        },
+        popExitTransition = {
+            getPopExitTransition(motionTransition)
+        },
+    ) {
         scopedComposable(ConfigScreen) { _, scope ->
             val vm: ConfigViewModel = scope.get()
             val appVm: AppViewModel = get()
             ConfigScreen(vm, appVm)
         }
 
-        scopedComposable(CitiesScreen) { _, scope ->
+        scopedComposable(
+            CitiesScreen,
+        ) { _, scope ->
             val navigate = { id: Int ->
-                navController.navigate(CityDetailScreen.buildRoute(CityDetailValues(id)))
+                navController.navigate(
+                    CityDetailScreen.buildRoute(CityDetailValues(id), NavTransition.SharedAxisZ)
+                )
             }
             val viewModel = scope.getWith<CitiesViewModel>(navigate)
             CitiesScreen(viewModel)
         }
-        scopedComposable(CityDetailScreen) { navBackStackEntry, scope ->
+        scopedComposable(
+            CityDetailScreen,
+        ) { navBackStackEntry, scope ->
             CityDetailScreen.getId(navBackStackEntry.arguments)?.let { cityId ->
                 CityDetailScreen(scope.getWith(cityId, { navController.navigateUp() }))
             }
@@ -90,7 +119,11 @@ fun RootNavigation(navController: NavHostController) {
             doubleScopedComposable(
                 navController, nestedNavGraph, AddCityMainScreen
             ) { navEntry, parentScope, scope ->
-                val navigate = { navController.navigate(AddCitySecondaryScreen.buildRoute(NoParams)) }
+                val navigate = {
+                    navController.navigate(
+                        AddCitySecondaryScreen.buildRoute(NoParams, NavTransition.SharedAxisX)
+                    )
+                }
                 val parentVm = flowVmGetter(parentScope, navEntry)
                 val viewModel = scope.get<AddCityMainViewModel> {
                     parametersOf(parentVm, navigate)
@@ -130,7 +163,7 @@ fun BottomBar(navController: NavHostController) {
         updateStateIfStartDestination(navBackStackEntry?.destination, appVm)
 
         items.forEach { screen ->
-            val route = screen.pathRoot
+            val route = screen.route
 
             BottomNavigationItem(
                 icon = { Icon(screen.icon, stringResource(screen.title)) },
@@ -154,7 +187,7 @@ private fun navToTopDestination(
     appViewModel: AppViewModel,
 ) {
     navController.navigate(path) {
-        popUpTo(navController.graph.startDestinationId) {}
+        popUpTo(navController.graph.startDestinationId)
     }
     appViewModel.onBottomDestinationChanged(path)
 }
@@ -175,21 +208,25 @@ private fun NavDestination.getRootGraph(): NavGraph? {
 
 sealed class BottomNavItem(
     val pathRoot: String,
+    val route: String,
     @StringRes val title: Int,
     val icon: ImageVector,
 ) {
     object Config : BottomNavItem(
         ConfigScreen.declaredPath,
+        ConfigScreen.buildRoute(NoParams),
         R.string.bottom_nav_config,
         Icons.Filled.Settings,
     )
     object Cities : BottomNavItem(
         CitiesScreen.declaredPath,
+        CitiesScreen.buildRoute(NoParams),
         R.string.bottom_nav_cities,
         Icons.Filled.List,
     )
     object Add : BottomNavItem(
         AddCitySubgraph.declaredPath,
+        AddCitySubgraph.buildRoute(NoParams),
         R.string.bottom_nav_add,
         Icons.Filled.Add,
     )
